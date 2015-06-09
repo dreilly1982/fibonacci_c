@@ -12,9 +12,12 @@
 #include <string.h>
 #include <math.h>
 
-#define SHIFT   120
 #define BASE    ((digit)1 << SHIFT)
 #define MASK    ((digit)(BASE - 1))
+
+#ifdef	WIN32
+#define putchar_unlocked	putchar
+#endif
 
 bigint * new_bigint(size_t n) {
     bigint *x;
@@ -65,12 +68,12 @@ bigint * normalize(bigint *n) {
 }
 
 void print(bigint *n) {
-    int i, j, k, *d;
-    k = (int) floor(36.12359947967774 * n->numDigits) + 1;
+    int i, j, k, l, *d;
+    k = (int) floor(BASE10PERDIGIT * n->numDigits) + 1;
     d = calloc(k, sizeof(int));
     memset(d, 0, sizeof(int) * k);
     
-    for(int l = (int)n->numDigits - 1; l > -1; l--)
+    for(l = (int) n->numDigits - 1; l > -1; l--)
     {
         if (l == 0)
         {

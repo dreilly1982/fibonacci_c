@@ -13,7 +13,20 @@
 #include <stdint.h>
 #include <stdlib.h>
 
+#ifdef __SIZEOF_INT128__
 typedef __uint128_t digit;
+#define BASE10PERDIGIT	36.12359947967774
+#define SHIFT	120
+#elif defined(__UINT64_TYPE__)
+typedef uint64_t digit;
+#define BASE10PERDIGIT	18.06179973983887
+#define SHIFT	60
+#else
+typedef uint32_t digit;
+#define BASE10PERDIGIT	9.030899869919436
+#define SHIFT	30
+#endif
+
 typedef struct bigint {
     size_t numDigits;
     digit digits[];
