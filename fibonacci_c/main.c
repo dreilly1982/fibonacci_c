@@ -9,7 +9,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include "bigint.h"
-#define LIMIT   10000
+#define LIMIT   50000
 
 void safe_free(void *n);
 
@@ -45,5 +45,8 @@ int main(int argc, const char * argv[]) {
     
     //printf("%d ", LIMIT - d);
     print(c);
+    free(a);
+    free(b);
+    free(c);
     return 0;
 }
