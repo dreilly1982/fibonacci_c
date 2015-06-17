@@ -35,6 +35,6 @@ typedef struct bigint {
 bigint * new_bigint(size_t n);
 bigint * add(bigint *a, bigint *b);
 bigint * normalize(bigint *n);
-void print(bigint *n);
+char * print(bigint *n);
 
 #endif /* defined(__fibonacci_c__bigint__) */

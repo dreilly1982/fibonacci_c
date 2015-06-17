@@ -17,6 +17,7 @@ int main(int argc, const char * argv[]) {
     bigint *a;
     bigint *b;
     bigint *c;
+	char *buffer;
     int d;
     
     a = new_bigint(1);
@@ -27,15 +28,21 @@ int main(int argc, const char * argv[]) {
     b->digits[0] = 1;
     
     d -= 2;
-    printf("%d ", 0);
-    print(a);
-    printf("%d ", 1);
-    print(b);
+	buffer = print(a);
+	printf("%d %s\n", 0, buffer);
+	free(buffer);
+	buffer = NULL;
+	buffer = print(b);
+    printf("%d %s\n", 1, buffer);
+	free(buffer);
+	buffer = NULL;
     c = add(a, b);
     
     while(d) {
-        printf("%d ", LIMIT - d);
-        print(c);
+		buffer = print(c);
+        printf("%d %s\n", LIMIT - d, buffer);
+        free(buffer);
+		buffer = NULL;
         free(a);
         a = b;
         b = c;
@@ -43,8 +50,10 @@ int main(int argc, const char * argv[]) {
         d--;
     }
     
-    printf("%d ", LIMIT - d);
-    print(c);
+	buffer = print(c);
+    printf("%d %s\n", LIMIT - d, buffer);
+    free(buffer);
+	buffer = NULL;
     free(a);
     free(b);
     free(c);
