@@ -8,6 +8,7 @@
 
 #include <assert.h>
 #include <stdio.h>
+#include <string.h>
 #include "bigint.h"
 #define LIMIT   2000
 
@@ -18,6 +19,12 @@ int main(int argc, const char * argv[]) {
     bigint *b;
     bigint *c;
     int d;
+	
+	digit m = 2000000;
+	char BUFFER[m];
+	//BUFFER = realloc(BUFFER, sizeof(out_arr));
+	memset(BUFFER, '\0', sizeof(BUFFER));
+	setvbuf(stdout, BUFFER, _IOFBF, m);
     
     a = new_bigint(1);
     b = new_bigint(1);
@@ -46,6 +53,7 @@ int main(int argc, const char * argv[]) {
     //fprintf(stdout, "%d ", LIMIT - d);
 	//fflush(stdout);
     print(c);
+	fflush(stdout);
     free(a);
     free(b);
     free(c);

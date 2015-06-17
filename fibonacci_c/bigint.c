@@ -105,12 +105,9 @@ void print(bigint *n) {
 	for(; i > -1; i--, m++) out_arr[m] = '0' + d[i];
     //for(; i > -1; i--) putchar_unlocked('0'+d[i]);
     //putchar_unlocked('\n');
-	char BUFFER[sizeof(out_arr)];
-	//BUFFER = realloc(BUFFER, sizeof(out_arr));
-	memset(BUFFER, '\0', sizeof(BUFFER));
-	setvbuf(stdout, BUFFER, _IOFBF, m);
+	
 	fwrite(out_arr,1, m+1, stdout);
-	fflush(stdout);
+	//fflush(stdout);
 	//fclose(stdout);
 	free(out_arr);
 	out_arr = NULL;
