@@ -67,9 +67,8 @@ bigint * normalize(bigint *n) {
     return n;
 }
 
-char * print(bigint *n) {
+void print(bigint *n) {
     int i, j, k, l, *d;
-	char *BUFFER;
     k = (int) floor(BASE10PERDIGIT * n->numDigits) + 1;
     d = calloc(k, sizeof(int));
     memset(d, 0, sizeof(int) * k);
@@ -97,13 +96,11 @@ char * print(bigint *n) {
     }
     
     for (i = (k - 1); i > 0; i--) if (d[i] > 0) break;
-	BUFFER = calloc(i + 2, sizeof(char));
-    BUFFER[i+1] = '\0';
+    
     // Put characters into stream
-	for(; i > -1; i--) BUFFER[i] =  '0'+d[i];
-    //for(; i > -1; i--) putchar_unlocked('0'+d[i]);
-    //putchar_unlocked('\n');
+    for(; i > -1; i--) putchar_unlocked('0'+d[i]);
+    putchar_unlocked('\n');
     free(d);
     d = NULL;
-    return BUFFER;
+    return;
 }
