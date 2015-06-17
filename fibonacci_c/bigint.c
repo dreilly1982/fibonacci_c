@@ -69,6 +69,7 @@ bigint * normalize(bigint *n) {
 
 void print(bigint *n) {
     int i, j, k, l, *d;
+	char *out_arr;
     k = (int) floor(BASE10PERDIGIT * n->numDigits) + 1;
     d = calloc(k, sizeof(int));
     memset(d, 0, sizeof(int) * k);
@@ -96,10 +97,23 @@ void print(bigint *n) {
     }
     
     for (i = (k - 1); i > 0; i--) if (d[i] > 0) break;
-    
+	size_t m = 0;
+	out_arr = calloc(i + 3, sizeof(char));
+	out_arr[i + 1] = '\n';
+	out_arr[i + 2] = '\0';
     // Put characters into stream
-    for(; i > -1; i--) putchar_unlocked('0'+d[i]);
-    putchar_unlocked('\n');
+	for(; i > -1; i--, m++) out_arr[m] = '0' + d[i];
+    //for(; i > -1; i--) putchar_unlocked('0'+d[i]);
+    //putchar_unlocked('\n');
+	char BUFFER[sizeof(out_arr)];
+	//BUFFER = realloc(BUFFER, sizeof(out_arr));
+	memset(BUFFER, '\0', sizeof(BUFFER));
+	setvbuf(stdout, BUFFER, _IOFBF, m);
+	fwrite(out_arr,1, m+1, stdout);
+	fflush(stdout);
+	//fclose(stdout);
+	free(out_arr);
+	out_arr = NULL;
     free(d);
     d = NULL;
     return;

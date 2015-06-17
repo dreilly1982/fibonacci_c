@@ -27,14 +27,14 @@ int main(int argc, const char * argv[]) {
     b->digits[0] = 1;
     
     d -= 2;
-    printf("%d ", 0);
+    //fprintf(stdout, "%d ", 0);
     print(a);
-    printf("%d ", 1);
+    //fprintf(stdout, "%d ", 1);
     print(b);
     c = add(a, b);
     
     while(d) {
-        printf("%d ", LIMIT - d);
+        //fprintf(stdout, "%d ", LIMIT - d);
         print(c);
         free(a);
         a = b;
@@ -43,7 +43,8 @@ int main(int argc, const char * argv[]) {
         d--;
     }
     
-    printf("%d ", LIMIT - d);
+    //fprintf(stdout, "%d ", LIMIT - d);
+	//fflush(stdout);
     print(c);
     free(a);
     free(b);
